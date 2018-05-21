@@ -1,0 +1,40 @@
+﻿<Window x:Class="KorisnickiInterfejs.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KorisnickiInterfejs"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label Name="naslovLabel" Content="UNOS" Margin="296,29,297,355"/>
+
+        <Label Name="geoLabel" Content="Geografsko podrucje:" Margin="10,77,485,287"/>
+        <Label Name="geoGreska" Margin="354,77,95,305"/>
+
+        <!--<Label Name="idLabel" Content="ID geografskog podrucja:" Margin="10,112,485,270"/>-->
+        <Label Name="potrosnjaLabel" Content="Potrosnja:" Margin="17,130,498,244"/>
+        <Label Name="potrosnjaGreska" Margin="408,127,117.6,249"/>
+
+        <Label Name="datumLabel" Content="Datum:" Margin="17,153,648.6,220"/>
+        <Label Name="datumGreska" Margin="388,175,108.6,205"/>
+
+        <Label Name="vremeLabel" Content="Vreme:" Margin="17,207,498,166"/>
+        <Label Name="vremeGreska" Margin="388,216,35.6,165" RenderTransformOrigin="0.054,0.583"/>
+
+        <ComboBox Name="geoCombo" Margin="178,77,297,305"/>
+        <TextBox Name="potrosnjaTextBox" Margin="178,127,437.6,249"/>
+
+        <DatePicker x:Name="datumPicker" Text="Odaberi datum" Margin="178,173,442.6,205"/>
+        
+        <TextBox Name="vremeTextBox" Margin="178,216,567.6,166"/>
+        <TextBox x:Name="vremeTextBox2" Margin="231,217,502.6,165" />
+        <TextBox x:Name="vremeTextBox3" Margin="296,217,421.6,165"/>
+
+        <Button Name="okButton" Content="OK"  Margin="17,357,619.6,21" Click="OkButton_Click" />
+        <Button Name="closeButton" Content="Close" Click="CloseButton_Click" Margin="598,357,35.6,21"/>
+        <Button Name="izmijeniXML" Content="Izmijeni XML fajl" Click="IzmijeniXML_Click" Margin="310,357,323.6,21"/>
+
+
+    </Grid>
+</Window>

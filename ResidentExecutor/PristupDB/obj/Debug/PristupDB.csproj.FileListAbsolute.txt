@@ -1,0 +1,10 @@
+C:\Users\Genguša\Desktop\NoviProjekat\ResidentExecutor\PristupDB\bin\Debug\PristupDB.exe.config
+C:\Users\Genguša\Desktop\NoviProjekat\ResidentExecutor\PristupDB\bin\Debug\PristupDB.exe
+C:\Users\Genguša\Desktop\NoviProjekat\ResidentExecutor\PristupDB\bin\Debug\PristupDB.pdb
+C:\Users\Genguša\Desktop\NoviProjekat\ResidentExecutor\PristupDB\obj\Debug\PristupDB.csprojResolveAssemblyReference.cache
+C:\Users\Genguša\Desktop\NoviProjekat\ResidentExecutor\PristupDB\obj\Debug\PristupDB.csproj.CoreCompileInputs.cache
+C:\Users\Genguša\Desktop\NoviProjekat\ResidentExecutor\PristupDB\obj\Debug\PristupDB.exe
+C:\Users\Genguša\Desktop\NoviProjekat\ResidentExecutor\PristupDB\obj\Debug\PristupDB.pdb
+C:\Users\Genguša\Desktop\NoviProjekat\ResidentExecutor\PristupDB\bin\Debug\Contract.dll
+C:\Users\Genguša\Desktop\NoviProjekat\ResidentExecutor\PristupDB\bin\Debug\Contract.pdb
+C:\Users\Genguša\Desktop\NoviProjekat\ResidentExecutor\PristupDB\obj\Debug\PristupDB.csproj.CopyComplete
