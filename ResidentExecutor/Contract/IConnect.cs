@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 namespace Contract
 {
     [ServiceContract]
-    public interface IPrenesiPodatke
+    public interface IConnect
     {
-        //OBRISI DEBILU NIGDE NE KORISITIS
         [OperationContract]
-        void PokupiPodatke();
+        List<PodaciIzBaze> VratiRedove(string selectUpit);
     }
 }

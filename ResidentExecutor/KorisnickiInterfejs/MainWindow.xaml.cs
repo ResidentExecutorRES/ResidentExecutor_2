@@ -1,8 +1,10 @@
 ﻿using Contract;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,11 +20,16 @@ using System.Xml.Serialization;
 
 namespace KorisnickiInterfejs
 {
+    
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static string Upit = "";
+        public static string SelectUpit = "";
+        public static List<PodaciIzBaze> podaciIzBaze;
+
         private string _geoPodrucje;
         private float _unesenaPotrosnja;
         private string _datum;
@@ -38,7 +45,12 @@ namespace KorisnickiInterfejs
             InitializeComponent();
             geoCombo.ItemsSource = GeoPodrucja.geoPodrucja.Values;
             //funkcijeCombo.ItemsSource = Funkcije.funkcije.Values;
+            GeoPodrucja geo = new GeoPodrucja();
+            if (!File.Exists("../../../geo_podrucja.xml"))
+            {
 
+                geo.NapraviXMLGeoPOdrucja();
+            }
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
@@ -56,9 +68,21 @@ namespace KorisnickiInterfejs
                         idGeoPodrucja = item.Key;
                 }
 
-                string upit = "INSERT INTO UneseneVrednosti " +
-                    "(IDGeoPodrucja, VremeMerenja, Vrednost) " +
-                    "VALUES ('" + idGeoPodrucja + "', '" + datum + "', " + _unesenaPotrosnja + ")";
+                SelectUpit = "SELECT * FROM UneseneVrednosti WHERE " +
+                    "VremeMerenja = '"+datum+"' AND IDGeoPodrucja = '"+idGeoPodrucja+"'";
+
+                IConnect proxy = new ChannelFactory<IConnect>(new NetTcpBinding(), new EndpointAddress("net.tcp://localhost:10100/IConnect")).CreateChannel();
+
+                 podaciIzBaze = proxy.VratiRedove(SelectUpit);
+
+                
+                if(podaciIzBaze.Count == 0)
+                {
+
+                    Upit = "INSERT INTO UneseneVrednosti " +
+                       "(IDGeoPodrucja, VremeMerenja, Vrednost) " +
+                       "VALUES ('" + idGeoPodrucja + "', '" + datum + "', " + _unesenaPotrosnja + ")";
+                }
 
                 if (!File.Exists(putanja))
                 {
@@ -67,7 +91,7 @@ namespace KorisnickiInterfejs
                     
 
                     //2015-12-11 23:33:12.000
-                    File.WriteAllText(putanja, upit);
+                    File.WriteAllText(putanja, Upit);
 
                     UneseniPodaci uneseni = new UneseniPodaci();
                     this.Close();
@@ -77,12 +101,14 @@ namespace KorisnickiInterfejs
                 {
                     File.Delete(putanja);
                     //string apendovan = _geoPodrucje + ";" + _unesenaPotrosnja.ToString() + ";" + _datum + ";" + _vreme;
-                    File.WriteAllText(putanja, upit);
+                    File.WriteAllText(putanja, Upit);
 
                     UneseniPodaci uneseni = new UneseniPodaci();
                     this.Close();
                     uneseni.ShowDialog();
-                }             
+                }
+
+                
 
             }
         }
@@ -96,7 +122,7 @@ namespace KorisnickiInterfejs
         {
             //NapraviXML();
             if (!File.Exists(putanja))
-                NapraviXML();
+                NapraviXMLFunkcije();
             else
                 IzmeniXML();
         }
@@ -227,23 +253,24 @@ namespace KorisnickiInterfejs
 
         private string putanja = @"../../../rezidentne_funkcije.xml";
 
-        public List<FUNKCIJA> CitajIzXML()
-        {
-            XmlSerializer desrializer = new XmlSerializer(typeof(List<FUNKCIJA>));
-            List<FUNKCIJA> retVal = new List<FUNKCIJA>();
+        //public List<FUNKCIJA> CitajIzXML()
+        //{
+        //    XmlSerializer desrializer = new XmlSerializer(typeof(List<FUNKCIJA>));
+        //    List<FUNKCIJA> retVal = new List<FUNKCIJA>();
 
-            using (TextReader reader = new StreamReader(putanja))
-            {
-                object obj = desrializer.Deserialize(reader);
-                retVal = (List<FUNKCIJA>)obj;
-            }
+        //    using (TextReader reader = new StreamReader(putanja))
+        //    {
+        //        object obj = desrializer.Deserialize(reader);
+        //        retVal = (List<FUNKCIJA>)obj;
+        //    }
 
-            return retVal;
-        }
+        //    return retVal;
+        //}
 
         public void IzmeniXML()
         {
-            List<FUNKCIJA> lista = CitajIzXML();
+            RadSaXML xmlFajl = new RadSaXML();
+            List<FUNKCIJA> lista = xmlFajl.CitajIzXML();
 
             Random random = new Random();
             //string putanja = @"rezidentne_funkcije.xml";
@@ -260,7 +287,7 @@ namespace KorisnickiInterfejs
             }
         }
 
-        public void NapraviXML()
+        public void NapraviXMLFunkcije()
         {
            
             XmlSerializer xml = new XmlSerializer(typeof(List<FUNKCIJA>), new XmlRootAttribute("REZIDENTNE_FUNKCIJE"));
@@ -277,5 +304,7 @@ namespace KorisnickiInterfejs
                 xml.Serialize(write, lista);
             }
         }
+
+        
     }
 }

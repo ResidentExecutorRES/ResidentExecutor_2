@@ -20,7 +20,11 @@ namespace Contract
         public SqlDateTime Vreme { get; set; }
         public float Vrednost { get; set; }
 
-        
+        //public override string ToString()
+        //{
+        //    return "ID: " + ID + " Vreme: " + Vreme + " Vrednost: " + Vrednost;
+        //}
+
 
     }
 }

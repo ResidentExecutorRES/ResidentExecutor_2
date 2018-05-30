@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connect.cs" />
+    <Compile Include="Konekcija.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,6 +55,10 @@
     <ProjectReference Include="..\Contract\Contract.csproj">
       <Project>{09C0645E-12FB-488E-988F-4C3A67D40524}</Project>
       <Name>Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KorisnickiInterfejs\KorisnickiInterfejs.csproj">
+      <Project>{4A7DF4EC-CA31-427B-8128-0B4772A22110}</Project>
+      <Name>KorisnickiInterfejs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

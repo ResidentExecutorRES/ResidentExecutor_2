@@ -44,9 +44,28 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResidentE.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contract\Contract.csproj">
+      <Project>{09C0645E-12FB-488E-988F-4C3A67D40524}</Project>
+      <Name>Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KorisnickiInterfejs\KorisnickiInterfejs.csproj">
+      <Project>{4A7DF4EC-CA31-427B-8128-0B4772A22110}</Project>
+      <Name>KorisnickiInterfejs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PristupDB\PristupDB.csproj">
+      <Project>{643ff48e-9527-4d13-bc84-bb72016ea0c9}</Project>
+      <Name>PristupDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServisniSloj\ServisniSloj.csproj">
+      <Project>{5a876306-b482-4091-aaa2-aa9f8f3297c2}</Project>
+      <Name>ServisniSloj</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

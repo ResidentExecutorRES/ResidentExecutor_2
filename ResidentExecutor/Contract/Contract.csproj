@@ -44,9 +44,11 @@
     <Compile Include="FUNKCIJA.cs" />
     <Compile Include="GeoPodrucja.cs" />
     <Compile Include="ICalculationFunctions.cs" />
+    <Compile Include="IConnect.cs" />
     <Compile Include="IPrenesiPodatke.cs" />
     <Compile Include="PodaciIzBaze.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RadSaXML.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

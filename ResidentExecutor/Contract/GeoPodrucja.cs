@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Contract
 {
@@ -21,5 +23,36 @@ namespace Contract
             { "BI", "Bihac"},
             { "MO", "Mostar" }
         };
+
+        public string Id { get; set; }
+        public string Naziv { get; set; }
+
+        public GeoPodrucja(string id, string naziv)
+        {
+            Id = id;
+            Naziv = naziv;
+        }
+
+        public GeoPodrucja()
+        {
+        }
+
+        public void NapraviXMLGeoPOdrucja()
+        {
+
+            XmlSerializer xml = new XmlSerializer(typeof(List<GeoPodrucja>), new XmlRootAttribute("GEOGRAFSKA_PODRUCJA"));
+
+            List<GeoPodrucja> lista = new List<GeoPodrucja>();
+            foreach (var item in geoPodrucja)
+            {
+                lista.Add(new GeoPodrucja(item.Key, item.Value));
+            }
+            
+
+            using (TextWriter write = new StreamWriter("../../../geo_podrucja.xml"))
+            {
+                xml.Serialize(write, lista);
+            }
+        }
     }
 }
