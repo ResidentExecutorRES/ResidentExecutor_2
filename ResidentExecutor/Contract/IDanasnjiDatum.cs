@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Contract
 {
     [ServiceContract]
-    public interface IConnect
+    public interface IDanasnjiDatum
     {
         [OperationContract]
-        List<PodaciIzBaze> VratiRedove();
+        List<PodaciIzBaze> DanasnjiDatum();
     }
 }

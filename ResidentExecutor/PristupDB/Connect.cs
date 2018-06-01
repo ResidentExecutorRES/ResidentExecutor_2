@@ -11,10 +11,11 @@ namespace PristupDB
 {
     public class Connect : IConnect
     {
-        public List<PodaciIzBaze> VratiRedove(string selectUpit)
+        public List<PodaciIzBaze> VratiRedove()
         {
-            List<PodaciIzBaze> podaci = new List<PodaciIzBaze>();           
+            string selectUpit = "SELECT * FROM UneseneVrednosti";
 
+            List<PodaciIzBaze> podaci = new List<PodaciIzBaze>();         
             Polja.conn.Open();
 
             SqlCommand cmd = new SqlCommand(selectUpit, Polja.conn);

@@ -58,6 +58,7 @@
     <Compile Include="UneseniPodaci.xaml.cs">
       <DependentUpon>UneseniPodaci.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpisiCallback.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

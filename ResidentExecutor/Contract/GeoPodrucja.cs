@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Contract
 {
+    [DataContract]
     public class GeoPodrucja
     {
         public static readonly Dictionary<string, string> geoPodrucja = new Dictionary<string, string>()
@@ -23,8 +25,9 @@ namespace Contract
             { "BI", "Bihac"},
             { "MO", "Mostar" }
         };
-
+        [DataMember]
         public string Id { get; set; }
+        [DataMember]
         public string Naziv { get; set; }
 
         public GeoPodrucja(string id, string naziv)

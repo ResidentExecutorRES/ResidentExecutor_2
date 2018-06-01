@@ -9,18 +9,18 @@ namespace ServisniSloj
 {
     public class IzvrsavanjeFunkcija
     {
-        public List<int> GetIDFunkcija(List<FUNKCIJA> lista)
-        {
-            List<int> listaID = new List<int>();
-            foreach (var item in lista)
-            {
-                if (item.UKLJUCENO == 1)
-                {
-                    listaID.Add(item.ID);
-                }
-            }
-            return listaID;
-        }
+        //public List<int> GetIDFunkcija(List<FUNKCIJA> lista)
+        //{
+        //    List<int> listaID = new List<int>();
+        //    foreach (var item in lista)
+        //    {
+        //        if (item.UKLJUCENO == 1)
+        //        {
+        //            listaID.Add(item.ID);
+        //        }
+        //    }
+        //    return listaID;
+        //}
 
         //public Dictionary<int, float> IzracunajVrijednost()
         //{

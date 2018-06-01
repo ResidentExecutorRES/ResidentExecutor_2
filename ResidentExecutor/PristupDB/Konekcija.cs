@@ -9,22 +9,20 @@ using System.Threading.Tasks;
 
 namespace PristupDB
 {
-    public class Konekcija
+    
+    public class Konekcija : IDanasnjiDatum
     {
-        public static SqlConnection conn = new SqlConnection(@"Server=DESKTOP-JJ3CM3A;  Database=ResidentExecutor_DB;  Integrated Security=True");
-        public static string[] podaciIzFajla = File.ReadAllLines(@"../../../PodaciSaMainWindow.txt");
-        public static SqlCommand cmd = null;
 
-        public static string Unos = "";
-
+        //public static string Unos = "";
+        //Vraca redove iz tabele UneseneVrednosti gdje je datum jednak danasnjem datumu
         public  List<PodaciIzBaze> DanasnjiDatum()
         {
             List<PodaciIzBaze> lista = new List<PodaciIzBaze>();
 
-            conn.Open();
+            Polja.conn.Open();
             string upit = "SELECT * FROM UneseneVrednosti WHERE CONVERT(DATE, VremeMerenja) = CONVERT(DATE, GETDATE())";
 
-            SqlCommand cmd = new SqlCommand(upit, conn);
+            SqlCommand cmd = new SqlCommand(upit, Polja.conn);
             SqlDataReader reader = cmd.ExecuteReader();
 
 
@@ -34,7 +32,7 @@ namespace PristupDB
             }
 
             reader.Close();
-            conn.Close();
+            Polja.conn.Close();
 
             return lista;
         }

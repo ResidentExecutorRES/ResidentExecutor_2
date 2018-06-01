@@ -4,17 +4,15 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace Contract
 {
-    [XmlRoot("REZIDENTNE_FUNKCIJE")]
     [DataContract]
-    public class FUNKCIJA
-    {
+    public class PosaljiSelectUpit
+    {        
         [DataMember]
-        public int ID { get; set; }
+        public  string Upit { get; set; }
         [DataMember]
-        public int UKLJUCENO { get; set; }
+        public  string SelectUpit { get; set; }
     }
 }

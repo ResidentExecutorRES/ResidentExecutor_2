@@ -11,19 +11,19 @@ namespace ServisniSloj
     public class ObradaPodataka
     {
         //Fja koja uzima samo vrijednosti iz Liste List<PodaciIzBaze> i prosledjuje f-jama za racunanje Min, Max i Avg
-        //Vraca za danasnji datum id podrucja i vrenost
+        //Vraca za danasnji datum id podrucja i vrednost
 
             /// <summary>
             /// za danasnji dan za svaki ID lista vrednosti iz tabele
             /// </summary>
             /// <returns></returns>
-        public static Dictionary<string, List<float>> GetVrijednostiZaGeoPodrucje()
+        public static Dictionary<string, List<float>> GetVrijednostiZaGeoPodrucje(List<PodaciIzBaze> podaci)
         {
             Dictionary<string, List<float>> ret = new Dictionary<string, List<float>>();
             List<float> ret2 = new List<float>();
-            Konekcija k = new Konekcija();
+            //Konekcija k = new Konekcija();
 
-            List<PodaciIzBaze> podaci = k.DanasnjiDatum();
+           // List<PodaciIzBaze> podaci = k.DanasnjiDatum();
             foreach (var item1 in GetIDGeoPodrucja())
             {
 

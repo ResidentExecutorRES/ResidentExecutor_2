@@ -1,34 +1,25 @@
 ﻿using Contract;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.IO;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Xml.Serialization;
 
 namespace KorisnickiInterfejs
 {
-    
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static string Upit = "";
-        public static string SelectUpit = "";
-        public static List<PodaciIzBaze> podaciIzBaze;
+       // public static string Upit = "";
+        //public static string SelectUpit = "";
+        public  List<PodaciIzBaze> podaciIzBaze = new List<PodaciIzBaze>();
 
         private string _geoPodrucje;
         private float _unesenaPotrosnja;
@@ -40,6 +31,8 @@ namespace KorisnickiInterfejs
         public string Datum { get => _datum; set => _datum = value; }
         public string Vreme { get => _vreme; set => _vreme = value; }
 
+        public string putanja = @"../../../rezidentne_funkcije.xml";
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -52,72 +45,91 @@ namespace KorisnickiInterfejs
                 geo.NapraviXMLGeoPOdrucja();
             }
         }
-
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             if (Validate())
             {
-                string putanja = @"../../../PodaciSaMainWindow.txt";
-                string[] trimovano = _datum.Split('/');
+                //string putanja = @"../../../PodaciSaMainWindow.txt";
+
+                //{12/10/2015 11:33:12 PM}
+                //'2018-6-1 00:20:00.000'
+                string[] trimovano = _datum.Split('/');                
                 string datum = trimovano[2] + "-" + trimovano[0] + "-" + trimovano[1] + " " + _vreme;
                 string idGeoPodrucja = "";
 
+                SqlDateTime d = SqlDateTime.Parse(datum);
                 foreach (var item in GeoPodrucja.geoPodrucja)
                 {
                     if (item.Value == _geoPodrucje)
                         idGeoPodrucja = item.Key;
                 }
 
-                SelectUpit = "SELECT * FROM UneseneVrednosti WHERE " +
-                    "VremeMerenja = '"+datum+"' AND IDGeoPodrucja = '"+idGeoPodrucja+"'";
+                //PosaljiSelectUpit ps = new PosaljiSelectUpit
+                //{
+                //    SelectUpit = "SELECT * FROM UneseneVrednosti WHERE " +
+                //    "VremeMerenja = '" + datum + "' AND IDGeoPodrucja = '" + idGeoPodrucja + "'"
+                //};
+
+                bool nadjenoUTabeli = false;
 
                 IConnect proxy = new ChannelFactory<IConnect>(new NetTcpBinding(), new EndpointAddress("net.tcp://localhost:10100/IConnect")).CreateChannel();
 
-                 podaciIzBaze = proxy.VratiRedove(SelectUpit);
+                podaciIzBaze = proxy.VratiRedove();
+
+                foreach (var item in podaciIzBaze)
+                {
+                    if(item.ID == idGeoPodrucja && item.Vreme == d)
+                    {
+                        nadjenoUTabeli = true;
+                        break;
+                    }
+                }
 
                 
-                if(podaciIzBaze.Count == 0)
-                {
 
-                    Upit = "INSERT INTO UneseneVrednosti " +
-                       "(IDGeoPodrucja, VremeMerenja, Vrednost) " +
-                       "VALUES ('" + idGeoPodrucja + "', '" + datum + "', " + _unesenaPotrosnja + ")";
+               string upit = "INSERT INTO UneseneVrednosti " +
+                      "(IDGeoPodrucja, VremeMerenja, Vrednost) " +
+                      "VALUES ('" + idGeoPodrucja + "', '" + datum + "', " + _unesenaPotrosnja + ")";
+
+
+                if (nadjenoUTabeli == false)
+                {
+                    DuplexSample(upit);
                 }
 
-                if (!File.Exists(putanja))
-                {
-                    //string apendovan = _geoPodrucje + ";" + _unesenaPotrosnja.ToString() + ";" + _datum + ";" + _vreme;
+                #region upisUTxtFajl
 
-                    
+                //if (!File.Exists(putanja))
+                //{
+                //    //string apendovan = _geoPodrucje + ";" + _unesenaPotrosnja.ToString() + ";" + _datum + ";" + _vreme;
 
-                    //2015-12-11 23:33:12.000
-                    File.WriteAllText(putanja, Upit);
 
-                    UneseniPodaci uneseni = new UneseniPodaci();
-                    this.Close();
-                    uneseni.ShowDialog();
-                }
-                else
-                {
-                    File.Delete(putanja);
-                    //string apendovan = _geoPodrucje + ";" + _unesenaPotrosnja.ToString() + ";" + _datum + ";" + _vreme;
-                    File.WriteAllText(putanja, Upit);
 
-                    UneseniPodaci uneseni = new UneseniPodaci();
-                    this.Close();
-                    uneseni.ShowDialog();
-                }
+                //    //2015-12-11 23:33:12.000
+                //    File.WriteAllText(putanja, ps.Upit);
 
+                //    UneseniPodaci uneseni = new UneseniPodaci();
+                //    this.Close();
+                //    uneseni.ShowDialog();
+                //}
+                //else
+                //{
+                //    File.Delete(putanja);
+                //    //string apendovan = _geoPodrucje + ";" + _unesenaPotrosnja.ToString() + ";" + _datum + ";" + _vreme;
+                //    File.WriteAllText(putanja, ps.Upit);
+                //}
+                #endregion
+                UneseniPodaci uneseni = new UneseniPodaci();
+                this.Close();
+                uneseni.ShowDialog();
                 
 
             }
         }
-
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
         private void IzmijeniXML_Click(object sender, RoutedEventArgs e)
         {
             //NapraviXML();
@@ -126,7 +138,6 @@ namespace KorisnickiInterfejs
             else
                 IzmeniXML();
         }
-
         private bool Validate()
         {
             bool retVal = true;
@@ -251,8 +262,6 @@ namespace KorisnickiInterfejs
             return retVal;
         }
 
-        private string putanja = @"../../../rezidentne_funkcije.xml";
-
         //public List<FUNKCIJA> CitajIzXML()
         //{
         //    XmlSerializer desrializer = new XmlSerializer(typeof(List<FUNKCIJA>));
@@ -266,7 +275,6 @@ namespace KorisnickiInterfejs
 
         //    return retVal;
         //}
-
         public void IzmeniXML()
         {
             RadSaXML xmlFajl = new RadSaXML();
@@ -286,7 +294,6 @@ namespace KorisnickiInterfejs
                 serializer.Serialize(writer, lista);
             }
         }
-
         public void NapraviXMLFunkcije()
         {
            
@@ -305,6 +312,26 @@ namespace KorisnickiInterfejs
             }
         }
 
-        
+        private  static void DuplexSample(string s)
+        {
+            //"INSERT INTO UneseneVrednosti " +
+            //"(IDGeoPodrucja, VremeMerenja, Vrednost) " +
+            //"VALUES ('" + idGeoPodrucja + "', '" + datum + "', " + _unesenaPotrosnja + ")";
+
+            //string s = "INSERT INTO UneseneVrednosti(IDGeoPodrucja, VremeMerenja, Vrednost) VALUES ('DO', '2018-6-1 00:20:00.000', 234)";
+            var binding = new NetTcpBinding();
+            var address = new EndpointAddress("net.tcp://localhost:10102/IUpisi");
+
+            var clientCallback = new UpisiCallback();
+            var context = new InstanceContext(clientCallback);
+
+            var factory = new DuplexChannelFactory<IUpisi>(clientCallback, binding, address);
+
+            IUpisi messageChanel = factory.CreateChannel();
+
+             Task.Run(() => messageChanel.PosaljiInsert(s));
+        }
+
+
     }
 }

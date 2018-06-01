@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Contract
 {
-    [ServiceContract]
-    public interface IPrenesiPodatke
+   [ServiceContract]
+    public interface IProveriPreInsert
     {
-        //OBRISI DEBILU NIGDE NE KORISITIS
         [OperationContract]
-        void PokupiPodatke();
+        Dictionary<string, List<CalculationTable>> PosaljiInsert();
     }
 }
