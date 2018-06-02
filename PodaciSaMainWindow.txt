@@ -1,0 +1,1 @@
+INSERT INTO UneseneVrednosti (IDGeoPodrucja, VremeMerenja, Vrednost) VALUES ('TR', '2018-5-31 12:14:15.000', 123456)

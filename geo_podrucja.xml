@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GEOGRAFSKA_PODRUCJA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GeoPodrucja>
+    <Id>BL</Id>
+    <Naziv>Banjaluka</Naziv>
+  </GeoPodrucja>
+  <GeoPodrucja>
+    <Id>BN</Id>
+    <Naziv>Bijeljina</Naziv>
+  </GeoPodrucja>
+  <GeoPodrucja>
+    <Id>DO</Id>
+    <Naziv>Doboj</Naziv>
+  </GeoPodrucja>
+  <GeoPodrucja>
+    <Id>PR</Id>
+    <Naziv>Prnjavor</Naziv>
+  </GeoPodrucja>
+  <GeoPodrucja>
+    <Id>SA</Id>
+    <Naziv>Sarajevo</Naziv>
+  </GeoPodrucja>
+  <GeoPodrucja>
+    <Id>TR</Id>
+    <Naziv>Trebinje</Naziv>
+  </GeoPodrucja>
+  <GeoPodrucja>
+    <Id>ZV</Id>
+    <Naziv>Zvornik</Naziv>
+  </GeoPodrucja>
+  <GeoPodrucja>
+    <Id>GR</Id>
+    <Naziv>Gradiska</Naziv>
+  </GeoPodrucja>
+  <GeoPodrucja>
+    <Id>BI</Id>
+    <Naziv>Bihac</Naziv>
+  </GeoPodrucja>
+  <GeoPodrucja>
+    <Id>MO</Id>
+    <Naziv>Mostar</Naziv>
+  </GeoPodrucja>
+</GEOGRAFSKA_PODRUCJA>
