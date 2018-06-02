@@ -5,36 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KorisnickiInterfejs"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        ResizeMode="NoResize">
     <Grid>
-        <Label Name="naslovLabel" Content="UNOS" Margin="296,29,297,355"/>
+        <Label Name="naslovLabel" Content=" UNOS POTROSNJE ZA ODREĐENO PODRUČJE" Margin="10,0,10,352.916" Cursor="None" FontSize="36" Width="774"/>
 
-        <Label Name="geoLabel" Content="Geografsko podrucje:" Margin="10,77,485,287"/>
-        <Label Name="geoGreska" Margin="354,77,95,305"/>
+        <Label Name="geoLabel" Content="Geografsko podrucje:" Margin="17,77.8,628,305" Height="38"/>
+        <Label Name="geoGreska" Margin="422.4,77,155,305" Height="38.8" Width="225"/>
 
         <!--<Label Name="idLabel" Content="ID geografskog podrucja:" Margin="10,112,485,270"/>-->
-        <Label Name="potrosnjaLabel" Content="Potrosnja:" Margin="17,130,498,244"/>
-        <Label Name="potrosnjaGreska" Margin="408,127,117.6,249"/>
+        <Label Name="potrosnjaLabel" Content="Potrosnja:" Margin="17,132.4,635,252.8" Height="38"/>
+        <Label Name="potrosnjaGreska" Margin="231,129.2,338,253.6" Width="225" Height="38"/>
 
-        <Label Name="datumLabel" Content="Datum:" Margin="17,153,648.6,220"/>
-        <Label Name="datumGreska" Margin="388,175,108.6,205"/>
+        <Label Name="datumLabel" Content="Datum:" Margin="17,189.05,648.6,197.75" Height="38"/>
+        <Label Name="datumGreska" Margin="337.2,190.05,231.8,189.95" Width="225" Height="38"/>
 
-        <Label Name="vremeLabel" Content="Vreme:" Margin="17,207,498,166"/>
-        <Label Name="vremeGreska" Margin="388,216,35.6,165" RenderTransformOrigin="0.054,0.583"/>
+        <Label Name="vremeLabel" Content="Vreme:" Margin="17,240.4,648.6,142.4" Height="38"/>
+        <Label Name="vremeGreska" Margin="337.2,242.4,231.8,140.4" RenderTransformOrigin="0.054,0.583" Width="225" Height="38"/>
 
-        <ComboBox Name="geoCombo" Margin="178,77,297,305"/>
-        <TextBox Name="potrosnjaTextBox" Margin="178,127,437.6,249"/>
+        <ComboBox Name="geoCombo" Margin="178,77,390.6,305" Width="225"/>
+        <TextBox Name="potrosnjaTextBox" Margin="178,129.2,568,253.6" Height="38" Width="48"/>
 
-        <DatePicker x:Name="datumPicker" Text="Odaberi datum" Margin="178,173,442.6,205"/>
-        
-        <TextBox Name="vremeTextBox" Margin="178,216,567.6,166"/>
-        <TextBox x:Name="vremeTextBox2" Margin="231,217,502.6,165" />
-        <TextBox x:Name="vremeTextBox3" Margin="296,217,421.6,165"/>
+        <DatePicker x:Name="datumPicker" Text="Odaberi datum" Margin="178,190.05,461.8,196.75" Height="38"/>
+
+        <TextBox Name="vremeTextBox" Margin="178,240,567.6,142" Width="48" Height="38"/>
+        <TextBox x:Name="vremeTextBox2" Margin="231.2,240.4,514.8,142.4" Width="48" Height="38" />
+        <TextBox x:Name="vremeTextBox3" Margin="284.2,240.4,461.8,142.4" Width="48" Height="38"/>
 
         <Button Name="okButton" Content="OK"  Margin="17,357,619.6,21" Click="OkButton_Click" />
         <Button Name="closeButton" Content="Close" Click="CloseButton_Click" Margin="598,357,35.6,21"/>
         <Button Name="izmijeniXML" Content="Izmijeni XML fajl" Click="IzmijeniXML_Click" Margin="310,357,323.6,21"/>
-
+        <Label Name="izmeniLabel" Content="XML file sa ukljucenim funkcijama je izmenjen" Visibility="Hidden"/>
 
     </Grid>
 </Window>

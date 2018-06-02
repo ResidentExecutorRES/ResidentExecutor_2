@@ -2,11 +2,11 @@
 <REZIDENTNE_FUNKCIJE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <FUNKCIJA>
     <ID>1</ID>
-    <UKLJUCENO>1</UKLJUCENO>
+    <UKLJUCENO>0</UKLJUCENO>
   </FUNKCIJA>
   <FUNKCIJA>
     <ID>2</ID>
-    <UKLJUCENO>1</UKLJUCENO>
+    <UKLJUCENO>0</UKLJUCENO>
   </FUNKCIJA>
   <FUNKCIJA>
     <ID>3</ID>

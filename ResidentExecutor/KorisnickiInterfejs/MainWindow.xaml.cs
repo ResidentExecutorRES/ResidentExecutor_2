@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.IO;
 using System.ServiceModel;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -119,6 +120,7 @@ namespace KorisnickiInterfejs
                 //    File.WriteAllText(putanja, ps.Upit);
                 //}
                 #endregion
+
                 UneseniPodaci uneseni = new UneseniPodaci();
                 this.Close();
                 uneseni.ShowDialog();
@@ -277,6 +279,7 @@ namespace KorisnickiInterfejs
         //}
         public void IzmeniXML()
         {
+
             RadSaXML xmlFajl = new RadSaXML();
             List<FUNKCIJA> lista = xmlFajl.CitajIzXML();
 
@@ -293,6 +296,8 @@ namespace KorisnickiInterfejs
             {
                 serializer.Serialize(writer, lista);
             }
+
+            
         }
         public void NapraviXMLFunkcije()
         {

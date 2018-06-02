@@ -165,7 +165,7 @@ namespace AutomatskoUpravljanje
 
             //Vraca redove iz tabele sa danasnjim datumom i sortira listu po opadajucem redoslijedu
             //var movies = _db.Movies.OrderBy(c => c.Category).ThenBy(n => n.Name)
-            List<PodaciIzBaze> traziDatum = Program.proxyDanasnji.DanasnjiDatum().OrderByDescending(o => o.Vreme).ThenBy(n => n.Vreme).ToList();
+            List<PodaciIzBaze> traziDatum = Program.proxyDanasnji.DanasnjiDatum().OrderByDescending(o => o.ID).ThenBy(n => n.Vreme).ToList();
             List<PodaciIzBaze> traziNajnovijiDatum = SamoPoJednoPodrucje(traziDatum);
 
             foreach (var itemDatum in traziNajnovijiDatum)
